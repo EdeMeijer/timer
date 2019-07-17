@@ -1,0 +1,23 @@
+version: '3.2'
+
+services:
+  timerdb:
+    image: postgres:11
+    restart: always
+    environment:
+      POSTGRES_USER: dev
+      POSTGRES_PASSWORD: testing
+      POSTGRES_DB: timer
+    ports:
+      - 5432:5432
+
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@localhost
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - 8001:80
+    links:
+      - timerdb
