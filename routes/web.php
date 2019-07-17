@@ -20,3 +20,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/entry/create', 'HomeController@createEntry')->name('entry.create');
 Route::post('/entry/stop', 'HomeController@stopCurrentEntry')->name('entry.stopCurrent');
+Route::delete('/entry/{id}', 'HomeController@deleteEntry')->name('entry.delete');

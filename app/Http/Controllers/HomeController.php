@@ -46,7 +46,7 @@ class HomeController extends Controller
         $entry->start_date = new DateTimeImmutable();
         $entry->save();
 
-        return redirect()->route('login');
+        return redirect()->route('home');
     }
 
     public function stopCurrentEntry(): Response
@@ -57,7 +57,19 @@ class HomeController extends Controller
         $current->end_date = new DateTimeImmutable();
         $current->save();
 
-        return redirect()->route('login');
+        return redirect()->route('home');
+    }
+
+    public function deleteEntry(int $entryId): Response
+    {
+        $user = Auth::user();
+        $entry = $this->findEntry($user, $entryId);
+
+        if ($entry !== null) {
+            $entry->delete();
+        }
+
+        return redirect()->route('home');
     }
 
     private function getCurrentEntry(User $user): ?TimerEntry
@@ -73,5 +85,10 @@ class HomeController extends Controller
             ->whereNotNull('end_date')
             ->orderBy('start_date', 'desc')
             ->get();
+    }
+
+    private function findEntry(User $user, int $entryId): ?TimerEntry
+    {
+        return TimerEntry::where(['id' => $entryId, 'user_id' => $user->id])->first();
     }
 }

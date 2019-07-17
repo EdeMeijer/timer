@@ -63,6 +63,7 @@
                             <th>Start time</th>
                             <th>End time</th>
                             <th>Description</th>
+                            <th></th>
                         </tr>
                         @foreach ($history as $entry)
                             <tr>
@@ -78,6 +79,13 @@
                                 </td>
                                 <td>
                                     {{ $entry->description }}
+                                </td>
+                                <td>
+                                    <form method="POST" action="{{ route('entry.delete', $entry->id) }}">
+                                        @csrf
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        <input type="submit" value="Delete">
+                                    </form>
                                 </td>
                             </tr>
                         @endforeach
