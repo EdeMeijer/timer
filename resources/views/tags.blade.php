@@ -29,7 +29,7 @@
                                     <form method="POST" action="{{ route('tag.delete', $tag->id) }}">
                                         @csrf
                                         <input type="hidden" name="_method" value="DELETE">
-                                        <input type="submit" value="Delete">
+                                        <input type="submit" value="Delete" class="btn btn-outline-danger btn-sm">
                                     </form>
                                 </td>
                             </tr>

@@ -23,7 +23,6 @@
                         </div>
                     @endif
 
-                    {{--<example-component></example-component>--}}
                     <div class="card-body">
                         <h2>Current entry</h2>
 
@@ -37,7 +36,7 @@
                                 <br>
                                 <tags></tags>
                                 <br>
-                                <input type="submit" value="Start new entry" class="btn btn-primary">
+                                <input type="submit" value="Start new entry" class="btn btn-success">
                             </form>
                         @else
                             <table class="table">
@@ -45,7 +44,6 @@
                                     <th>Started at</th>
                                     <th>Description</th>
                                     <th>Tags</th>
-                                    <th></th>
                                 </tr>
                                 <tr>
                                     <td>
@@ -59,14 +57,12 @@
                                             <span class="multiselect__tag display">{{ $tag->description }}</span>
                                         @endforeach
                                     </td>
-                                    <td>
-                                        <form method="POST" action="{{ route('entry.stopCurrent') }}">
-                                            @csrf
-                                            <input type="submit" value="Stop tracking">
-                                        </form>
-                                    </td>
                                 </tr>
                             </table>
+                            <form method="POST" action="{{ route('entry.stopCurrent') }}">
+                                @csrf
+                                <input type="submit" value="Stop tracking" class="btn btn-danger">
+                            </form>
                         @endif
                     </div>
                     <div class="card-body">
@@ -104,7 +100,7 @@
                                         <form method="POST" action="{{ route('entry.delete', $entry->id) }}">
                                             @csrf
                                             <input type="hidden" name="_method" value="DELETE">
-                                            <input type="submit" value="Delete">
+                                            <input type="submit" value="Delete" class="btn btn-outline-danger btn-sm">
                                         </form>
                                     </td>
                                 </tr>
