@@ -28,4 +28,9 @@ class Tag extends Model
             ->orderBy('description', 'asc')
             ->get();
     }
+
+    public function __toString()
+    {
+        return $this->description;
+    }
 }

@@ -20,16 +20,14 @@
                         @forelse ($tags as $tag)
                             <tr>
                                 <td>
-                                    <span class="multiselect__tag display">
-                                        {{ $tag->description }}
-                                    </span>
+                                    @include('fragments.tags', ['tags' => [$tag]])
                                 </td>
                                 <td>{{ date('d-m-Y H:i:s', strtotime($tag->created_at)) }}</td>
                                 <td>
                                     <form method="POST" action="{{ route('tag.delete', $tag->id) }}">
                                         @csrf
                                         <input type="hidden" name="_method" value="DELETE">
-                                        <input type="submit" value="Delete" class="btn btn-outline-danger btn-sm">
+                                        <input type="submit" value="Delete" class="btn btn-outline-danger btn-tiny">
                                     </form>
                                 </td>
                             </tr>

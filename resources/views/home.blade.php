@@ -42,7 +42,7 @@
                         @else
                             <table class="table">
                                 <tr>
-                                    <th>Started at</th>
+                                    <th>Start time</th>
                                     <th>Description</th>
                                     <th>Tags</th>
                                 </tr>
@@ -54,9 +54,7 @@
                                         {{ $current->description }}
                                     </td>
                                     <td>
-                                        @foreach ($current->tags as $tag)
-                                            <span class="multiselect__tag display">{{ $tag->description }}</span>
-                                        @endforeach
+                                        @include('fragments.tags', ['tags' => $current->tags])
                                     </td>
                                 </tr>
                             </table>
@@ -93,15 +91,13 @@
                                         {{ $entry->description }}
                                     </td>
                                     <td>
-                                        @foreach ($entry->tags as $tag)
-                                            <span class="multiselect__tag display">{{ $tag->description }}</span>
-                                        @endforeach
+                                        @include('fragments.tags', ['tags' => $entry->tags])
                                     </td>
                                     <td>
                                         <form method="POST" action="{{ route('entry.delete', $entry->id) }}">
                                             @csrf
                                             <input type="hidden" name="_method" value="DELETE">
-                                            <input type="submit" value="Delete" class="btn btn-outline-danger btn-sm">
+                                            <input type="submit" value="Delete" class="btn btn-outline-danger btn-tiny">
                                         </form>
                                     </td>
                                 </tr>
