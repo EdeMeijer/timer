@@ -19,7 +19,10 @@ class TagsController extends Controller
     {
         return view(
             'tags',
-            ['tags' => Tag::getByUser($this->getUser())]
+            [
+                'nav' => $this->topNavigation(),
+                'tags' => Tag::getByUser($this->getUser()),
+            ]
         );
     }
 

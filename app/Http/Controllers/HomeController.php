@@ -34,6 +34,7 @@ class HomeController extends Controller
         return view(
             'home',
             [
+                'nav' => $this->topNavigation(),
                 'current' => $current,
                 'history' => $history,
                 'tagJsonData' => $tagJsonData

@@ -6,12 +6,13 @@
             <div class="col-md-12">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="{{ route('home') }}">Timer</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('tags') }}">Tags</a>
-                        </li>
+                        @foreach ($nav->getItems() as $item)
+                            <li class="nav-item{{ $item->isActive() ? ' active' : '' }}">
+                                <a class="nav-link" href="{{ route($item->getRoute()) }}">
+                                    {{ $item->getName() }}
+                                </a>
+                            </li>
+                        @endforeach
                     </ul>
                 </nav>
             </div>
