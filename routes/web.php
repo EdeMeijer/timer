@@ -21,3 +21,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::post('/entry/create', 'HomeController@createEntry')->name('entry.create');
 Route::post('/entry/stop', 'HomeController@stopCurrentEntry')->name('entry.stopCurrent');
 Route::delete('/entry/{id}', 'HomeController@deleteEntry')->name('entry.delete');
+
+
+Route::get('/tags', 'TagsController@index')->name('tags');
+Route::post('/tag/create', 'TagsController@createTag')->name('tag.create');
+Route::delete('/tag/{id}', 'TagsController@deleteTag')->name('tag.delete');

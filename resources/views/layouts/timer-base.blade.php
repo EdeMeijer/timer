@@ -7,10 +7,10 @@
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Timer</a>
+                            <a class="nav-link" href="{{ route('home') }}">Timer</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Tags</a>
+                            <a class="nav-link" href="{{ route('tags') }}">Tags</a>
                         </li>
                     </ul>
                 </nav>
