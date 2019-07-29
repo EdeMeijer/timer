@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\TimerEntry;
+use App\User;
 use DateTimeImmutable;
 use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
-use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 
@@ -21,7 +20,7 @@ class HomeController extends Controller
 
     public function index(): Renderable
     {
-        $user = Auth::user();
+        $user = $this->getUser();
 
         $current = $this->getCurrentEntry($user);
         $history = $this->getEntryHistory($user);
@@ -37,7 +36,7 @@ class HomeController extends Controller
 
     public function createEntry(Request $request): Response
     {
-        $user = Auth::user();
+        $user = $this->getUser();
         $description = $request->post('description');
 
         $entry = new TimerEntry();
@@ -51,7 +50,7 @@ class HomeController extends Controller
 
     public function stopCurrentEntry(): Response
     {
-        $user = Auth::user();
+        $user = $this->getUser();
         $current = $this->getCurrentEntry($user);
 
         $current->end_date = new DateTimeImmutable();
@@ -62,7 +61,7 @@ class HomeController extends Controller
 
     public function deleteEntry(int $entryId): Response
     {
-        $user = Auth::user();
+        $user = $this->getUser();
         $entry = $this->findEntry($user, $entryId);
 
         if ($entry !== null) {
