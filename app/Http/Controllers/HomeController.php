@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Tag;
-use App\TimerEntry;
-use App\User;
+use App\Models\Tag;
+use App\Models\TimerEntry;
+use App\Models\User;
 use DateTimeImmutable;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
