@@ -46,7 +46,7 @@
                     <form method="POST" action="{{ route('tag.create') }}">
                         @csrf
                         <input type="text" name="description" placeholder="Tag description" class="form-control"
-                               required pattern="[^ ]">
+                               required pattern=".*[^ ].*">
                         <br>
                         <input type="submit" value="Create new tag" class="btn btn-primary">
                     </form>

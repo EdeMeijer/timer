@@ -33,7 +33,7 @@
                             <form method="POST" action="{{ route('entry.create') }}">
                                 @csrf
                                 <input class="form-control" type="text" name="description" placeholder="Description"
-                                       required pattern="[^ ]">
+                                       required pattern=".*[^ ].*">
                                 <br>
                                 <tags></tags>
                                 <br>
