@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-12">
                 <nav class="navbar navbar-expand-lg navbar-light">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item active">

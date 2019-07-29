@@ -4,8 +4,8 @@
 @parent
 
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+    <div class="row">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">Tags</div>
 
@@ -17,7 +17,7 @@
                             <th>Create date</th>
                             <th></th>
                         </tr>
-                        @foreach ($tags as $tag)
+                        @forelse ($tags as $tag)
                             <tr>
                                 <td>
                                     <span class="multiselect__tag display">
@@ -33,7 +33,13 @@
                                     </form>
                                 </td>
                             </tr>
-                        @endforeach
+                        @empty
+                            <tr>
+                                <td colspan="3">
+                                    <em>No tags found</em>
+                                </td>
+                            </tr>
+                        @endforelse
                     </table>
                 </div>
                 <div class="card-body">

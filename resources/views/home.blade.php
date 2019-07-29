@@ -10,8 +10,8 @@
     @parent
 
     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
+        <div class="row">
+            <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">Timer</div>
 
@@ -80,7 +80,7 @@
                                 <th>Tags</th>
                                 <th></th>
                             </tr>
-                            @foreach ($history as $entry)
+                            @forelse ($history as $entry)
                                 <tr>
                                     <td>
                                         {{ date('d-m-Y H:i:s', strtotime($entry->start_date)) }}
@@ -108,7 +108,13 @@
                                         </form>
                                     </td>
                                 </tr>
-                            @endforeach
+                            @empty
+                                <tr>
+                                    <td colspan="5">
+                                        <em>No entries found</em>
+                                    </td>
+                                </tr>
+                            @endforelse
                         </table>
                     </div>
                 </div>
