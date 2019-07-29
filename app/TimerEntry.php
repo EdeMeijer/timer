@@ -18,4 +18,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class TimerEntry extends Model
 {
     use SoftDeletes;
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
 }
