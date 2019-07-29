@@ -1,5 +1,11 @@
 @extends('layouts.timer-base')
 
+@section('head')
+    @parent
+
+    <script type="application/json" id="tags-data">{!! json_encode($tagJsonData) !!}</script>
+@endsection
+
 @section('content')
     @parent
 
@@ -38,6 +44,7 @@
                                 <tr>
                                     <th>Started at</th>
                                     <th>Description</th>
+                                    <th>Tags</th>
                                     <th></th>
                                 </tr>
                                 <tr>
@@ -46,6 +53,11 @@
                                     </td>
                                     <td>
                                         {{ $current->description }}
+                                    </td>
+                                    <td>
+                                        @foreach ($current->tags as $tag)
+                                            <span class="multiselect__tag display">{{ $tag->description }}</span>
+                                        @endforeach
                                     </td>
                                     <td>
                                         <form method="POST" action="{{ route('entry.stopCurrent') }}">
@@ -65,6 +77,7 @@
                                 <th>Start time</th>
                                 <th>End time</th>
                                 <th>Description</th>
+                                <th>Tags</th>
                                 <th></th>
                             </tr>
                             @foreach ($history as $entry)
@@ -81,6 +94,11 @@
                                     </td>
                                     <td>
                                         {{ $entry->description }}
+                                    </td>
+                                    <td>
+                                        @foreach ($entry->tags as $tag)
+                                            <span class="multiselect__tag display">{{ $tag->description }}</span>
+                                        @endforeach
                                     </td>
                                     <td>
                                         <form method="POST" action="{{ route('entry.delete', $entry->id) }}">

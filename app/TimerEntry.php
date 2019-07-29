@@ -10,10 +10,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 /**
  * @mixin Eloquent
  *
+ * @property int $id
  * @property int $user_id
  * @property string $description
  * @property DateTimeInterface $start_date
  * @property DateTimeInterface|null $end_date
+ * @property mixed $tags
  */
 class TimerEntry extends Model
 {

@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Tag;
 use App\User;
 use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -18,15 +17,9 @@ class TagsController extends Controller
 
     public function index(): Renderable
     {
-        $user = $this->getUser();
-
-        $allTags = $this->getTags($user);
-
         return view(
             'tags',
-            [
-                'tags' => $allTags
-            ]
+            ['tags' => Tag::getByUser($this->getUser())]
         );
     }
 
@@ -53,13 +46,6 @@ class TagsController extends Controller
         }
 
         return redirect()->route('tags');
-    }
-
-    private function getTags(User $user): Collection
-    {
-        return Tag::where('user_id', $user->id)
-            ->orderBy('description', 'desc')
-            ->get();
     }
 
     private function findTag(User $user, int $tagId): ?Tag

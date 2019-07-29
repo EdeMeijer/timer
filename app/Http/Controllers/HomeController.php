@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Tag;
 use App\TimerEntry;
 use App\User;
 use DateTimeImmutable;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 
 
@@ -25,11 +27,16 @@ class HomeController extends Controller
         $current = $this->getCurrentEntry($user);
         $history = $this->getEntryHistory($user);
 
+        $tagJsonData = array_map(function(Tag $tag) {
+            return ['id' => $tag->id, 'name' => $tag->description];
+        }, Tag::getByUser($user)->all());
+
         return view(
             'home',
             [
                 'current' => $current,
-                'history' => $history
+                'history' => $history,
+                'tagJsonData' => $tagJsonData
             ]
         );
     }
@@ -39,11 +46,24 @@ class HomeController extends Controller
         $user = $this->getUser();
         $description = $request->post('description');
 
+        $tagIds = $request->post('tags', []);
+
+        $tags = null;
+        if (count($tagIds) > 0) {
+            $tags = Tag::findMany($tagIds)->where('user_id', $user->id);
+        }
+
         $entry = new TimerEntry();
         $entry->user_id = $user->id;
         $entry->description = $description;
         $entry->start_date = new DateTimeImmutable();
-        $entry->save();
+
+        DB::transaction(function() use ($entry, $tags) {
+            $entry->save();
+            if ($tags !== null) {
+                $entry->tags()->attach($tags);
+            }
+        });
 
         return redirect()->route('home');
     }

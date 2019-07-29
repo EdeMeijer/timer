@@ -19,7 +19,11 @@
                         </tr>
                         @foreach ($tags as $tag)
                             <tr>
-                                <td>{{ $tag->description }}</td>
+                                <td>
+                                    <span class="multiselect__tag display">
+                                        {{ $tag->description }}
+                                    </span>
+                                </td>
                                 <td>{{ date('d-m-Y H:i:s', strtotime($tag->created_at)) }}</td>
                                 <td>
                                     <form method="POST" action="{{ route('tag.delete', $tag->id) }}">
