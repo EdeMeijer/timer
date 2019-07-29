@@ -6,3 +6,10 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+// Vue multiselect
+@import '~vue-multiselect/dist/vue-multiselect.min.css';
+
+.multiselect__placeholder {
+    display: inline !important;
+}

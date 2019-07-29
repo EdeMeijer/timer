@@ -27,8 +27,11 @@
                             </p>
                             <form method="POST" action="{{ route('entry.create') }}">
                                 @csrf
-                                <input type="text" name="description" placeholder="Describe it">
-                                <input type="submit" value="Start new entry">
+                                <input class="form-control" type="text" name="description" placeholder="Description">
+                                <br>
+                                <tags></tags>
+                                <br>
+                                <input type="submit" value="Start new entry" class="btn btn-primary">
                             </form>
                         @else
                             <table class="table">

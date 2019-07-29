@@ -35,8 +35,9 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('tag.create') }}">
                         @csrf
-                        <input type="text" name="description" placeholder="Tag description">
-                        <input type="submit" value="Create new tag">
+                        <input type="text" name="description" placeholder="Tag description" class="form-control">
+                        <br>
+                        <input type="submit" value="Create new tag" class="btn btn-primary">
                     </form>
                 </div>
             </div>
